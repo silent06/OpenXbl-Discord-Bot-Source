@@ -1,0 +1,11 @@
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\bin\Debug\netcoreapp2.1\OpenXbl.deps.json
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\bin\Debug\netcoreapp2.1\OpenXbl.runtimeconfig.json
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\bin\Debug\netcoreapp2.1\OpenXbl.runtimeconfig.dev.json
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\bin\Debug\netcoreapp2.1\OpenXbl.dll
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\bin\Debug\netcoreapp2.1\OpenXbl.pdb
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.csproj.CoreCompileInputs.cache
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.AssemblyInfoInputs.cache
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.AssemblyInfo.cs
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.dll
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.pdb
+C:\Users\creec\Desktop\silent\OpenXBL-PHP-master\OpenXBL-PHP-master\openxbl\OpenXBL Discord Bot\stealthbot\obj\Debug\netcoreapp2.1\OpenXbl.csprojAssemblyReference.cache
