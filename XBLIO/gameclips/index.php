@@ -36,6 +36,7 @@
     {
         session_start();
     }
+    include('../config.php'); 
     $ACH_XUID=@$_GET['ACHXUID'];
 
     
@@ -48,7 +49,7 @@
     $newfilename =   "$ACH_XUID.json";
     $newfilename2 =   "gameclips.json";
     $newfilename3 =   "gameclipsByXUID.json";
-    $local_path = "/var/www/html/XBLIO/gameclips/files/";
+    $local_path = $LocalVpsFolder."gameclips/files/";
 
 
     if(isset($gameclips)) {

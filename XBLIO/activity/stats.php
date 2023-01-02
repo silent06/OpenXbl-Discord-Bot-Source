@@ -1,14 +1,14 @@
 <?php
 $ACH_XUID=@$_GET['ACHXUID'];
-
+include('../config.php'); 
 
 $NumberoFHistory=@$_GET['NumberoFHistory'];
 $NumberoFActivity=@$_GET['NumberoFActivity'];
     /*Json Files */
     $newfilename =   "$ACH_XUID.json";
 
-    $local_pathFeed = "/var/www/html/XBLIO/activity/feed/";
-    $local_pathHistory = "/var/www/html/XBLIO/activity/history/";
+    $local_pathFeed = $LocalVpsFolder."activity/feed/";
+    $local_pathHistory = $LocalVpsFolder."activity/history/";
 
 
 if(isset($NumberoFActivity)) {

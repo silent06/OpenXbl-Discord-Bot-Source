@@ -205,8 +205,6 @@ namespace stealthbot
                             Embed.WithDescription($"This CPUKey Already exist on our database {Context.User.Mention}.");
                         }
 
-
-
                     }
                 }
                 else

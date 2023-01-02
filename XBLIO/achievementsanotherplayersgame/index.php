@@ -41,13 +41,14 @@
     {
         session_start();
     }
+    include('../config.php'); 
     $ACH_XUID=@$_GET['ACHXUID'];
 
     $achievementsanotherplayersgame=@$_GET['achievementsanotherplayersgame'];
 
     /*GET varibles*/
     $newfilename =   "$ACH_XUID.json";
-    $local_path = "/var/www/html/XBLIO/achievementsanotherplayersgame/files/";
+    $local_path = $LocalVpsFolder."achievementsanotherplayersgame/files/";
 
     /*Json varibles*/ 
     $jsondata = file_get_contents($local_path.$newfilename);
@@ -99,7 +100,7 @@
                           //$output1 .= " <dt><b><u> Rare?: </b></u>"  .$people['rarity']['currentCategory']. "</dt> ";
                           //$output1 .= " <dt><b><u> Rare Percentage: </b></u>"  .$people['rarity']['currentPercentage']. "%</dt> ";
                           $output1 .= " <dt><b><u> GameScore: </b></u>"  .$people['rewards'][0]['value']. "</dt> ";
-                      }
+                        }
                         $output1 .= "</ul>"; 
                         $TotalRecords = "<b><u>  Total Number of Achievements:" .$json['pagingInfo']['totalRecords']. "</b></u>";
 

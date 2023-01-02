@@ -25,7 +25,7 @@ namespace OpenXbl
     {
 
         EmbedBuilder Embed = new EmbedBuilder();
-
+        EmbedBuilder Embed2 = new EmbedBuilder();
         [Command("GameCLips")]
         public async Task GameCLipsdownload()
         {
@@ -125,7 +125,6 @@ namespace OpenXbl
 
         }
 
-        /*Doesnt Work OpenXbl is unable to retrieve Screenshot info*/
         [Command("Screenshots")]
         public async Task Screenshots()
         {
@@ -134,12 +133,58 @@ namespace OpenXbl
             {
 
                 string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+                string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
                 string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
                 var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.GetScreenshots, "null", GetApikey, config.Global.httpRequestA = true);
 
+                string json = OpenXblHttp.RestClient.strResponseValue;
+                var obj = JObject.Parse(json);
 
-                Embed.AddField("Test:", httpResponse, true);
-                await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                if (CheckApiKey == "APIKEY Already in database")
+                {
+
+                    Embed.WithDescription("Recent Screenshots:");
+
+                    var gametitle = "";
+                    var titleId = "";
+                    var captureDate = "";
+                    var screenshot = "";
+
+                    foreach (var dataItem in obj["values"])
+                    {
+
+
+                        gametitle = dataItem["titleName"].Value<string>();
+                        titleId = dataItem["titleId"].Value<string>();
+                        captureDate = dataItem["captureDate"].Value<string>();
+
+                        Embed.AddField("Title:", gametitle, true);
+                        Embed.AddField("TitleId:", titleId, true);
+                        Embed.AddField("CaptureDate:", captureDate, true);
+                    }
+
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+
+                    foreach (var dataItem in obj["values"])
+                    {
+
+                        screenshot = dataItem["contentLocators"][0]["uri"].Value<string>();
+
+                        Embed2.WithImageUrl(screenshot.ToString());
+                        await Context.Channel.SendMessageAsync("", false, Embed2.Build());
+                    }
+
+                }
+                else if (CheckApiKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+
+
 
             }
             catch (Exception)

@@ -4,12 +4,12 @@
     {
         session_start();
     }
-
+    include('../config.php'); 
     $gameachievementshistory=@$_GET['gameachievementshistory'];
 
     /*GET varibles*/
     $newfilename =   "gameachievementshistory.json";
-    $local_path = "/var/www/html/XBLIO/ach/files";
+    $local_path = $LocalVpsFolder."ach/files";
 
     /*Json varibles*/ 
     $jsondata = file_get_contents($local_path.$newfilename);

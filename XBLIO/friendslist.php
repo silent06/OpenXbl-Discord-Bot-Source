@@ -14,10 +14,10 @@
     $FNumberOfFriends = @$_GET['FNumberOfFriends'];/*Request Friends total number of friends*/
 
     /*Json varibles*/ 
-    $jsondata = file_get_contents('friends.json');
+    @$jsondata = file_get_contents('friends.json');
     $json = json_decode($jsondata, true);
 
-    $Fjsondata = file_get_contents('anotherfriends.json');
+    @$Fjsondata = file_get_contents('anotherfriends.json');
     $Fjson = json_decode($Fjsondata, true);
     
      

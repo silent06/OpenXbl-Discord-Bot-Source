@@ -4,12 +4,12 @@
     {
         session_start();
     }
-
+    include('../config.php'); 
     $Multipeople=@$_GET['Multipeople'];
     $ACH_XUID=@$_GET['ACHXUID'];
     /*GET varibles*/
     $newfilename =   "files/$ACH_XUID.json";
-    $local_path = "/var/www/html/XBLIO/ach/";
+    $local_path = $LocalVpsFolder."ach/";
 
     /*Json varibles*/ 
     $jsondata = file_get_contents($local_path.$newfilename);

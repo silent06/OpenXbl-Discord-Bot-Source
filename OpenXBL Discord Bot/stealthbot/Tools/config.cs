@@ -132,7 +132,7 @@ namespace stealthbot
             internal static string PlayerSummarypresenceDevices = VPSString + "XBLIO/playersummary.php?presenceDevices";
 
             /*Presence*/
-            internal static string Presencedownload = VPSString + "XBLIO/xbox.php?presence=Presence&APIKEY=";
+            internal static string Presencedownload = VPSString + "XBLIO/xbox.php?presence=presence&APIKEY=";
             internal static string presence = VPSString + "XBLIO/presence/presence.php?presenceList&CPUKEYForStats=";
             internal static string presencelink = VPSString + "XBLIO/presence/site/?presenceList&CPUKEYForStats=";
 
@@ -141,7 +141,7 @@ namespace stealthbot
             internal static string GetFriendsPresence = VPSString + "XBLIO/presence/multipresence.php?Multipeople&ACHXUID=";
 
             /*Achievements*/
-            internal static string Achievementdownload = VPSString + "XBLIO/xbox.php?achievements=/achievements/";
+            internal static string Achievementdownload = VPSString + "XBLIO/xbox.php?achievements=/achievements";
             internal static string AchievementsUserString = VPSString + "XBLIO/ach/?achievements";
 
 

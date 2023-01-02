@@ -42,6 +42,7 @@
     {
         session_start();
     }
+    include('../config.php'); 
     include('../stealth/sql/Conn.php'); 
     require __DIR__ . '/../vendor/autoload.php';
     use \OpenXBL\Api;
@@ -60,7 +61,7 @@
     $newfilename2 =   "SpecificGameAchievements.json";
     $newfilename3 =   "achievements.json";
     $newfilename4 =   "achievementstats.json";
-    $local_path = "/var/www/html/XBLIO/ach/files/";
+    $local_path = $LocalVpsFolder."ach/files/";
 
 
     if(isset($achievementslist)) {

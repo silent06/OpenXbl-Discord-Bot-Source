@@ -43,6 +43,7 @@
     {
         session_start();
     }
+    include('../config.php'); 
     include('../stealth/sql/Conn.php'); 
     //stealth\sql
     require __DIR__ . '/../vendor/autoload.php';
@@ -59,8 +60,8 @@
     /*Json Files */
     $newfilename =   "$ACH_XUID.json";
 
-    $local_pathFeed = "/var/www/html/XBLIO/activity/feed/";
-    $local_pathHistory = "/var/www/html/XBLIO/activity/history/";
+    $local_pathFeed = $LocalVpsFolder."activity/feed/";
+    $local_pathHistory = $LocalVpsFolder."activity/history/";
 
 
 

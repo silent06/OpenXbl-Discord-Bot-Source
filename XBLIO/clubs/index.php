@@ -41,6 +41,7 @@
     {
         session_start();
     }
+    include('../config.php'); 
     include('../stealth/sql/Conn.php'); 
     require __DIR__ . '/../vendor/autoload.php';
     use \OpenXBL\Api;
@@ -53,7 +54,7 @@
 
     /*GET varibles*/
     $newfilename =   "$ACH_XUID.json";
-    $local_path = "/var/www/html/XBLIO/clubs/files/";
+    $local_path = $LocalVpsFolder."clubs/files/";
 
 
     if(isset($clubsowned)) {

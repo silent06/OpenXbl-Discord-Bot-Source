@@ -8,13 +8,13 @@
     use \OpenXBL\Api;
     //use \OpenXBL\Api;
     //header('Content-type: text/plain');
-
+    include('config.php'); 
     
     /*OpenXbl Api Variables */
     $API_KEY = @$_GET['APIKEY'];
     $xbox = new Api('8c0cckgkwk8kc0swg0s4goscc8w8c4wswoo');
     $ACH_XUID=@$_GET['ACHXUID'];
-    $VPSFolder= "/var/www/html/XBLIO/";
+    $VPSFolder= $LocalVpsFolder;
     
 ////////////////////////////////////////////Profile Commands///////////////////////////////////////////////////////////////////////
     /*Json varibles*/ 
@@ -219,7 +219,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($presence);
         $newfilename = "presence.json";
-        $local_path =  "/var/www/html/XBLIO/presence/";
+        $local_path =  $VPSFolder."presence/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -230,7 +230,7 @@
         $APIKey = new Api($API_KEY);
         $data = $APIKey->get($Multipeople);
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/presence/files/";
+        $local_path = $VPSFolder."presence/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "", $local_path.$newfilename;
@@ -504,7 +504,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($clubs);
         $newfilename = "$ACH_XUID.json";
-        $local_path =  "/var/www/html/XBLIO/clubs/files/";
+        $local_path =  $VPSFolder."clubs/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -533,7 +533,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($clubsowned);
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/clubs/files/";
+        $local_path = $VPSFolder."clubs/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -607,7 +607,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($ActivityFeed);
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/activity/feed/";
+        $local_path = $VPSFolder."activity/feed/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -625,7 +625,7 @@
 
         print $data = $APIKey->post($ActivityPost,$Payload);
         $newfilename = "ActivityPost.json";
-        $local_path = "/var/www/html/XBLIO/activity/";
+        $local_path = $VPSFolder."activity/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -638,7 +638,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($Activityhistory);
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/activity/history/";
+        $local_path = $VPSFolder."activity/history/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -692,7 +692,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($gameclips);
         $newfilename = "gameclips.json";
-        $local_path = "/var/www/html/XBLIO/gameclips/files/";
+        $local_path = $VPSFolder."gameclips/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -705,7 +705,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($friendsgameclips);
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/gameclips/files/";
+        $local_path = $VPSFolder."gameclips/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";
@@ -759,7 +759,7 @@
         $APIKey = new Api($API_KEY);
         $data = $APIKey->get($achievementslist);
         $newfilename =   "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/ach/files/";
+        $local_path = $VPSFolder."ach/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "", $local_path.$newfilename;
@@ -772,7 +772,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($achievementsanotherplayersgame);      
         $newfilename = "$ACH_XUID.json";
-        $local_path = "/var/www/html/XBLIO/achievementsanotherplayersgame/files/";
+        $local_path = $VPSFolder."achievementsanotherplayersgame/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "", $local_path.$newfilename;
@@ -787,7 +787,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($achievements);
         $newfilename = "achievements.json";
-        $local_path =  "/var/www/html/XBLIO/ach/files/";
+        $local_path =  $VPSFolder."ach/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         //echo "success";
@@ -803,7 +803,7 @@
         ];
         print $data = $APIKey->post($achievementstats, $Payload);
         $newfilename = "achievementstats.json";
-        $local_path = "/var/www/html/XBLIO/ach/files/";
+        $local_path = $VPSFolder."ach/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         //echo "success";'titleId' => '1297287142',
@@ -818,7 +818,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($SpecificGameAchievements);
         $newfilename =   "SpecificGameAchievements.json";
-        $local_path = "/var/www/html/XBLIO/ach/files/";
+        $local_path = $VPSFolder."ach/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         //echo "success";
@@ -832,7 +832,7 @@
         $APIKey = new Api($API_KEY);
         print $data = $APIKey->get($gameachievementshistory);
         $newfilename = "gameachievementshistory.json";
-        $local_path = "/var/www/html/XBLIO/ach/files/";
+        $local_path = $VPSFolder."ach/files/";
         // Write the contents back to the file
         file_put_contents($local_path.$newfilename, $data);
         echo "success";

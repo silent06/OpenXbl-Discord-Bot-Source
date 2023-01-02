@@ -5,6 +5,7 @@
         session_start();
     }
     include('../stealth/sql/Conn.php'); 
+    include('../config.php');
     require __DIR__ . '/../vendor/autoload.php';
     use \OpenXBL\Api;
 
@@ -55,7 +56,7 @@
 
             $data = $xbox->get($xuidinfo);
             $newfilename = "profile.json";
-            $local_path = "/var/www/html/XBLIO/presence/";
+            $local_path = $LocalVpsFolder."presence/";
     
             // Write the contents back to the file
             file_put_contents($local_path.$newfilename, $data);

@@ -64,7 +64,6 @@ namespace OpenXbl
                     return;
                 }
 
-
                 if (CheckApiKey == "APIKEY Already in database")
                 {
 

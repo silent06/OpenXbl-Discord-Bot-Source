@@ -36,6 +36,7 @@
     {
         session_start();
     }
+    include('../../config.php'); 
     include('sql/Conn.php'); 
     require __DIR__ . '/../vendor/autoload.php';
     use \OpenXBL\Api;
@@ -51,8 +52,8 @@
     /*Json Files */
     $newfilename =   "$ACH_XUID.json";
 
-    $local_pathFeed = "/var/www/html/XBLIO/activity/feed/";
-    $local_pathHistory = "/var/www/html/XBLIO/activity/history/";
+    $local_pathFeed = $LocalVpsFolder."activity/feed/";
+    $local_pathHistory = $LocalVpsFolder."activity/history/";
 
 
 

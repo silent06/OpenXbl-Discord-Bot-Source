@@ -81,7 +81,7 @@ namespace stealthbot
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
             
-            await Client.LoginAsync(TokenType.Bot, "OTI2MjUyODk4Mzk0OTgwNDAz.Yc4-Ow.o66OmA6_xLGl4-_vbM3_qC54sLE");
+            await Client.LoginAsync(TokenType.Bot, "OTI2MjUyODk4Mzk0OTgwNDAz.G2PeJJ.z-F0ohm343e8CmL03chwARxAggzuHwaPQSVUtU");
             await Client.StartAsync();
             await Task.Delay(-1);
 
