@@ -27,7 +27,8 @@ presence/index.php
 presence/presence.php
 presence/multipresence.php
 
-set VPSString webstring found in config.cs
+
+Dont forget to fill out config.ini! Found in discord bot folder. 
 
 
 
