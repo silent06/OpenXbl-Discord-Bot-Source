@@ -13,7 +13,7 @@ namespace stealthbot
     
         public static MySqlConnection Setup()
         {
-            return new MySqlConnection(String.Format("Server={0};Port=3306;Database={1};Uid={2};Password={3};", "root.silent.hosted.nfoservers.com", "silentwebhost_OpenXBL", "silentwebhost", ""));
+            return new MySqlConnection(String.Format("Server={0};Port=3306;Database={1};Uid={2};Password={3};", Global.host, Global.Database, Global.Username, Global.password));
         }
 
         public static bool Connect(MySqlConnection connection)

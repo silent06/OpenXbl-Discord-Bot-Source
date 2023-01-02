@@ -85,10 +85,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
@@ -122,7 +121,6 @@ namespace OpenXbl
                     return;
                 }
 
-
                 if (CheckApiKey == "APIKEY Already in database")
                 {
 
@@ -142,18 +140,16 @@ namespace OpenXbl
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
                 }
 
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
         /*Doesn't Work */
         [Command("ClubCreate")]
-        public async Task ClubCreate(string club)
+        public async Task ClubCreate(string clubName, string Clubtype)
         {
             //Payload: {"name":"Hello World", "type":"[public/private/hidden]"}
             try
@@ -165,29 +161,69 @@ namespace OpenXbl
                 //string Clubtype = "open";
                 //var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubCreate, "null", GetApikey, httpRequestA = true);
                 /*Post Request*/
-                /*var user = "{\"name\":" + "\"  " + club + "\"," +
-                            "\"type\":" + "\"  " + Clubtype + "\",}";*/
+                var user = "{\"name\":" + "\"  " + clubName + "\"," +
+                            "\"type\":" + "\"  " + Clubtype + "\",}";
 
-                string user = "{\"name\":\"silentA56459\"," +
-                                "\"type\":\"public\"}";
+                /*string user = "{\"name\":\"silentguy\"," +
+                                "\"type\":\"public\"}";*/
                 var json2 = JsonSerializer.Serialize(user);
                 var httpPost = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubCreate, user, GetApikey, config.Global.httpRequestA = false);
 
 
-                Embed.AddField("Club Created:", club);
+                Embed.AddField("Club Created:", clubName);
 
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
+            }
+        }
+
+        [Command("SingleClubSearch")]
+        public async Task SingleClubSearh(string clubName) {
+
+            try
+            {
+                string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+                string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
+                string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+
+                if (CheckApiKey == "APIKEY Already in database")
+                {
+                    var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubSearch + clubName, "null", GetApikey, config.Global.httpRequestA = true);
+
+                    string json = OpenXblHttp.RestClient.strResponseValue;
+                    var doc = JsonDocument.Parse(json);
+                    var ClubName = doc.RootElement.GetProperty("results")[0].GetProperty("text");
+                    var ClubId = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("id");
+                    var displayimage = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("displayImageUrl");
+
+                    Embed.AddField($"ClubName:", ClubName);
+                    Embed.AddField($"ClubId:", ClubId);
+                    Embed.WithImageUrl(displayimage.ToString());
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else if (CheckApiKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
         /*Needs work*/
         [Command("ClubSearch")]
-        public async Task ClubSearh(string clubid)
+        public async Task ClubSearh(string clubName)
         {
 
             try
@@ -196,22 +232,43 @@ namespace OpenXbl
                 string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
                 string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
 
-                var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubSearch + clubid, "null", GetApikey, config.Global.httpRequestA = true);
+                if (CheckApiKey == "APIKEY Already in database")
+                {
+                    var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubSearch + clubName, "null", GetApikey, config.Global.httpRequestA = true);
+                    string json = OpenXblHttp.RestClient.strResponseValue;
+                    var obj = JObject.Parse(json);
+                    var ClubName = "";
+                    var ClubId = "";
+                    var displayimage = "";
+                    EmbedBuilder Embed2 = new EmbedBuilder();
+                    Embed.WithDescription("Listing Found Clubs");
+                    foreach (var dataItem in obj["results"])
+                    {
 
-                string json = OpenXblHttp.RestClient.strResponseValue;
-                var doc = JsonDocument.Parse(json);
-                //var error = doc.RootElement.GetProperty("remainingOpenAndClosedClubs");
-                //[{"ErrorType":"InvalidClubId","Message":"Invalid
-                var clubs = doc.RootElement.GetProperty("ErrorType");
+                        ClubName = dataItem["text"].Value<string>();
+                        ClubId = dataItem["result"]["id"].Value<string>();
+                        displayimage = dataItem["result"]["displayImageUrl"].Value<string>();
+                        Embed.AddField($"ClubName(ID: {ClubId}):", ClubName);
+                        //Embed.AddField($"ClubId:", ClubId);
+                        //Embed2.WithImageUrl(displayimage.ToString());
+                        //await Context.Channel.SendMessageAsync("", false, Embed2.Build());
+                    }
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else if (CheckApiKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
 
-                Embed.AddField("Clubs Owned:", clubs);
-
-                await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
@@ -239,7 +296,6 @@ namespace OpenXbl
                     if (ReserveClub == "success")
                     {
 
-
                         Embed.AddField("Success! ClubName Reserved:", ClubName);
                         await Context.Channel.SendMessageAsync("", false, Embed.Build());
 
@@ -252,7 +308,6 @@ namespace OpenXbl
 
                     }
 
-
                 }
                 else if (CheckApiKey == "Not Registered")
                 {
@@ -264,10 +319,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }

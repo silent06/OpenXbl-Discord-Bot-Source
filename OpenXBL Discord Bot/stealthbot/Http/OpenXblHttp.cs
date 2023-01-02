@@ -80,7 +80,7 @@ namespace DiscordBot
                     {
                         response = (HttpWebResponse)request.GetResponse();
 
-                        //Console.WriteLine(response.StatusCode);
+                        if (stealthbot.config.Global.debug) Console.WriteLine("Get reponse status: " + response.StatusCode);
                         //Proecess the resppnse stream... (could be JSON, XML or HTML etc..._
 
                         using (Stream responseStream = response.GetResponseStream())
@@ -126,7 +126,7 @@ namespace DiscordBot
                     {
                         response = (HttpWebResponse)request.GetResponse();
 
-                        //Console.WriteLine(response.StatusCode);
+                        if (stealthbot.config.Global.debug) Console.WriteLine("Get reponse status: " + response.StatusCode);
                         //Proecess the resppnse stream... (could be JSON, XML or HTML etc..._
 
                         using (Stream responseStream = response.GetResponseStream())
@@ -176,10 +176,7 @@ namespace DiscordBot
 
                 return strResponseValue;
             }
-
-
         }
-
     }
 }
 

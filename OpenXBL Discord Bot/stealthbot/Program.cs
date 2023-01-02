@@ -68,6 +68,32 @@ namespace stealthbot
 
         public async Task MainAsync() {
 
+            string filePath = "config.ini";
+
+            if (!File.Exists(filePath))
+            {
+                throw new Exception("config.ini file not found");
+            }
+
+            Tools.LoadedIni = new IniParsing("config.ini");
+
+            OpenXBL.VPS = Tools.GetOpenXblVPS();
+            config.Global.OpebXblApiToken = Tools.GetOpenXblApiKey();
+            config.Global.debug = Tools.Getdebugmode();
+            Global.host = Tools.GetSqlHostName();
+            Global.Username = Tools.GetSqlUserName();
+            Global.password = Tools.GetSqlPassword();
+            Global.Database = Tools.GetSqlDatabase();
+            Global.DiscordApiToken = Tools.GetOpenDiscordAPIToken();
+
+            Console.Write("SQL connected to: {0}\n", Global.host);
+            Console.Write("SQL Database: {0}\n", Global.Database);
+            Console.Write("Using OpenXbl ApiKey: {0}\n", config.Global.OpebXblApiToken);
+            Console.Write("OpenXbl VPS set to: {0}\n", config.Global.VPSString);
+            Console.Write("DiscordApiToken set to: {0}\n", Global.DiscordApiToken);
+            Console.Write("Debug Mode: {0}\n", config.Global.debug);
+
+
             Client = new DiscordSocketClient(new DiscordSocketConfig { LogLevel = LogSeverity.Debug, MessageCacheSize = 250 });
             Commands = new CommandService(new CommandServiceConfig { CaseSensitiveCommands = false, DefaultRunMode = RunMode.Async, LogLevel = LogSeverity.Debug });
 
@@ -81,7 +107,7 @@ namespace stealthbot
             Client.Ready += Client_Ready;
             Client.Log += Client_Log;
             
-            await Client.LoginAsync(TokenType.Bot, "OTI2MjUyODk4Mzk0OTgwNDAz.G2PeJJ.z-F0ohm343e8CmL03chwARxAggzuHwaPQSVUtU");
+            await Client.LoginAsync(TokenType.Bot, Global.DiscordApiToken);
             await Client.StartAsync();
             await Task.Delay(-1);
 

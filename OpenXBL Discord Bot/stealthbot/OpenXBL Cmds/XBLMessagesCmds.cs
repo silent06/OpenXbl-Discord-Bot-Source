@@ -67,10 +67,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -126,10 +125,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -185,10 +183,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }

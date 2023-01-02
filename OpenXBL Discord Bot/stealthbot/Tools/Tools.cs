@@ -10,12 +10,100 @@ using DiscordBot;
 using System.ComponentModel;
 using System.Security.Cryptography;
 using System.Linq;
-//using System.Linq;
+using System.Runtime.InteropServices;
+using System.IO;
 
 namespace stealthbot
 {
+
+    internal class IniParsing
+    {
+        private string path;
+        string SettingsName = "config";
+        string EXE = Assembly.GetExecutingAssembly().GetName().Name;
+
+        [DllImport("kernel32")]
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+
+        public IniParsing(string INIPath)
+        {
+            //path = INIPath;
+            path = new FileInfo(INIPath ?? SettingsName + ".ini").FullName.ToString();
+        }
+
+        public void IniWriteValue(string Section, string Key, string Value)
+        {
+            WritePrivateProfileString(Section, Key, Value, this.path);
+        }
+
+        public string IniReadValue(string Section, string Key)
+        {
+            StringBuilder temp = new StringBuilder(255);
+            int i = GetPrivateProfileString(Section, Key, "", temp, 255, this.path);
+            return temp.ToString();
+        }
+
+    }
+
     class Tools
     {
+        public static IniParsing LoadedIni;
+
+        public static bool Getdebugmode()
+        {
+            string debug = LoadedIni.IniReadValue("Config", "DebugMode");
+            bool status = false;
+            if (debug == "true")
+            {
+                status = true;
+            }
+            else
+            {
+
+                status = false;
+            }
+
+            return status;
+        }
+
+        public static string GetOpenXblVPS()
+        {
+            return LoadedIni.IniReadValue("OpenXbl", "VPSTRING");
+        }
+
+        public static string GetOpenXblApiKey()
+        {
+            return LoadedIni.IniReadValue("OpenXbl", "APIKEY");
+        }
+
+        public static string GetOpenDiscordAPIToken()
+        {
+            return LoadedIni.IniReadValue("Config", "DiscordAPIToken");
+        }
+
+        public static string GetSqlHostName()
+        {
+            return LoadedIni.IniReadValue("mysql", "host");
+        }
+
+        public static string GetSqlUserName()
+        {
+            return LoadedIni.IniReadValue("mysql", "username");
+        }
+
+        public static string GetSqlPassword()
+        {
+            return LoadedIni.IniReadValue("mysql", "password");
+        }
+
+        public static string GetSqlDatabase()
+        {
+            return LoadedIni.IniReadValue("mysql", "database");
+        }
+
         static Random random = new Random();
         public static string GetRandomHexNumber(int digits)
         {
@@ -133,8 +221,6 @@ namespace stealthbot
         }
 
     }
-
-
 }
 
 

@@ -65,13 +65,10 @@ namespace OpenXbl
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
-
 
         }
 
@@ -116,10 +113,9 @@ namespace OpenXbl
                 Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -170,10 +166,9 @@ namespace OpenXbl
                 Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }

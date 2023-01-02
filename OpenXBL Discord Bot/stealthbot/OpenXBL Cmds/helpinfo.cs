@@ -159,13 +159,31 @@ namespace stealthbot
             Embed.WithDescription($"To use Enter {config.Global.prefix}GetFriendsAchStats titleId FulldiscordName(they must be registered in Database){Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
-
+        
         [Command("ClubsSummary"), Summary("ClubsSummary info")]
         public async Task ClubsSummaryhelp()
         {
             EmbedBuilder Embed = new EmbedBuilder();
             Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
             Embed.WithDescription($"To use Enter {config.Global.prefix}ClubsSummary clubId{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
+        [Command("ClubSearch"), Summary("ClubSearch info")]
+        public async Task ClubSearchhelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubSearch ClubName{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
+        [Command("SingleClubSearch"), Summary("SingleClubSearch info")]
+        public async Task SingleClubSearchhelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}SingleClubSearch ClubName{Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
@@ -186,6 +204,7 @@ namespace stealthbot
             Embed.WithDescription(
                 $"Commands: " +
                 $"\n{config.Global.prefix}account, " +
+                $"\n{config.Global.prefix}Screenshots, " +
                 $"\n{config.Global.prefix}GameCLips, " +
                 $"\n{config.Global.prefix}GameclipsByGamerTag, " +
                 $"\n{config.Global.prefix}presence, " +
@@ -211,6 +230,8 @@ namespace stealthbot
                 $"\n{config.Global.prefix}ReserveClub, " +
                 $"\n{config.Global.prefix}ClubsIOwn, " +
                 $"\n{config.Global.prefix}ClubsSummary, " +
+                $"\n{config.Global.prefix}ClubSearch, " +
+                $"\n{config.Global.prefix}SingleClubSearch, " +
                 $"\n{config.Global.prefix}ActivityFeed" +
                 $"\n{config.Global.prefix}ActivityHistory" +
                 $"\n{config.Global.prefix}PostActivityFeed" +
@@ -218,7 +239,7 @@ namespace stealthbot
                 $"\n{config.Global.prefix}AddApiKey,  " +
                 $"\n{config.Global.prefix}link " +
                 $"\n{Context.User.Mention}."
-                );
+                ); 
             Embed.WithThumbnailUrl(Context.User.GetAvatarUrl());
             Embed.AddField("Need CPUKEY? To use bot?", $"Enter **{config.Global.prefix}GenerateRandomCPUKEY**", true);
             await Context.Channel.SendMessageAsync("", false, Embed.Build());

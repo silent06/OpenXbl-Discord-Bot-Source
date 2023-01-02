@@ -11,6 +11,7 @@ namespace stealthbot
         internal static class Global
         {
             internal static bool httpRequestA;
+            internal static bool debug;
 
             //Bot Color
             internal static int RGB1 = 32;
@@ -22,7 +23,7 @@ namespace stealthbot
             internal static string prefix = "$";
 
             /*Your VPS URL*/
-            internal static string VPSString = "https://silentlive.gq/";
+            internal static string VPSString = "http://" + OpenXBL.VPS + "/";
 
             /*OpenXbl URL strings*/
             internal static string CheckXBLAccount = "account";

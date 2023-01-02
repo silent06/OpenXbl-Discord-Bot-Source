@@ -73,7 +73,7 @@ namespace OpenXbl
             }
             catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync(ex.Message);
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
@@ -122,13 +122,11 @@ namespace OpenXbl
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //await Context.Channel.SendMessageAsync(ex.Message);
-                await ReplyAsync("server is offline");
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
-
 
         /*Need to make friendlist php Web Html*/
         [Command("Requestfriendslist")]
@@ -181,10 +179,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -230,10 +227,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }

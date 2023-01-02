@@ -108,9 +108,9 @@ namespace stealthbot
                 }
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync(e.Message);
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
@@ -154,7 +154,7 @@ namespace stealthbot
             }
             catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync(ex.Message);
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 
@@ -215,9 +215,9 @@ namespace stealthbot
                 }
                 await Context.Channel.SendMessageAsync("", false, Embed.Build());
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync(e.Message);
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
         }
 

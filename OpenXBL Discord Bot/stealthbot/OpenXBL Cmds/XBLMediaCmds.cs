@@ -67,10 +67,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -117,10 +116,9 @@ namespace OpenXbl
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                await ReplyAsync("server is offline");
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
@@ -152,8 +150,6 @@ namespace OpenXbl
 
                     foreach (var dataItem in obj["values"])
                     {
-
-
                         gametitle = dataItem["titleName"].Value<string>();
                         titleId = dataItem["titleId"].Value<string>();
                         captureDate = dataItem["captureDate"].Value<string>();
@@ -184,20 +180,13 @@ namespace OpenXbl
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
                 }
 
-
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                await ReplyAsync("server is offline");
-
-                //await Context.Channel.SendMessageAsync(ex.Message);/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
             }
 
         }
-
-
 
     }
 }
