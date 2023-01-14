@@ -38,7 +38,7 @@
 
 <?php
 
-
+    include('../../config.php');
     include('../../stealth/sql/Conn.php'); 
     require __DIR__ . '/../../vendor/autoload.php';
     use \OpenXBL\Api;
@@ -76,6 +76,7 @@
 ?>
 
 <body>
+<div style="background-color:black;" class="se-pre-con"> </div>
 <div id="container">
 <div id="header"><h1><a>Presence List:</a></h1></div>
   <div id="wrapper">
@@ -95,7 +96,7 @@
   
               $data = $xbox->get($xuidinfo);
               $newfilename = "profile.json";
-              $local_path = "/var/www/html/XBLIO/presence/";
+              $local_path = $LocalVpsFolder."presence/";
       
               // Write the contents back to the file
               file_put_contents($local_path.$newfilename, $data);
@@ -108,7 +109,7 @@
               $output1 .= " <dt><b style=color:red;><u> GamerTag: </b></u>"  .$gamertag. "</dt> ";             
               $output1 .= " <dt><b style=color:red;><u> State: </b></u>"  .$people['state']. "</dt> ";
               $output1 .= " <dt><b style=color:red;><u> Last Device Played?: </b></u> "  .$people['lastSeen']['deviceType']. "</dt> ";
-              $output1 .= "<dt><b style=color:red;><u> Title Id: </b></u> "  .$people['lastSeen']['titleId']. "</dt> ";
+              $output1 .= " <dt><b style=color:red;><u> Title Id: </b></u> "  .$people['lastSeen']['titleId']. "</dt> ";
               $output1 .= " <dt><b style=color:red;><u> Last Game Played: </b></u>"  .$people['lastSeen']['titleName']. "</dt> ";
               $output1 .= " <dt><b style=color:red;><u> Player Timestamp: </b></u>"  .$people['lastSeen']['timestamp']. "\n</dt> ";
               

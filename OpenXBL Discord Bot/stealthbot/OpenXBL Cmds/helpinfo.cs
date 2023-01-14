@@ -204,6 +204,7 @@ namespace stealthbot
             Embed.WithDescription(
                 $"Commands: " +
                 $"\n{config.Global.prefix}account, " +
+                $"\n{config.Global.prefix}RandomGamerTag, " +
                 $"\n{config.Global.prefix}Screenshots, " +
                 $"\n{config.Global.prefix}GameCLips, " +
                 $"\n{config.Global.prefix}GameclipsByGamerTag, " +

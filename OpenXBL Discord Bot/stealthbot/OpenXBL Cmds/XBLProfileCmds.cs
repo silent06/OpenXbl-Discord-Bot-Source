@@ -23,7 +23,7 @@ namespace OpenXbl
 {
     public class XBLProfileCmds : ModuleBase<SocketCommandContext>
     {
-        
+
         EmbedBuilder Embed = new EmbedBuilder();
 
         [Command("account")]
@@ -120,6 +120,47 @@ namespace OpenXbl
 
         }
 
+        [Command("RandomGamerTag")]
+        public async Task randomGamertag()
+        {
+
+            try {
+                /*Get Cpukey & APIKey*/
+                string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+                string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
+                string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+
+                /*
+                 {
+                    "algorithm": 1,
+                    "count": 3,
+                    "seed": "",
+                    "locale": "en-US"
+                 }                 
+                /*Post Request*/
+                var post = 
+                    "{\"algorithm\": \"1\",  " +
+                    "\"count\": \"5\",  " +
+                    "\"seed\": \"\",  " +
+                    "\"locale\": \"en-US\"}";
+
+                var json2 = JsonSerializer.Serialize(post);
+                /*Get Random GamerTag*/
+                var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.RandomGamerTag, post, GetApikey, config.Global.httpRequestA = false);
+                string json = OpenXblHttp.RestClient.strResponseValue;
+                var doc = JsonDocument.Parse(json);
+                var Rgamertag = doc.RootElement.GetProperty("Gamertags");
+
+                Embed.AddField("Random GamerTag(s):", Rgamertag, true);
+                Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                await Context.Channel.SendMessageAsync("", false, Embed.Build());
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
+            }
+
+        }
         [Command("XboxProfile")]
         public async Task xboxprofiledownload(string profile)
         {

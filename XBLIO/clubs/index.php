@@ -72,7 +72,7 @@
     }
 
 
-    $CPUKEYForStats = $_GET["CPUKEYForStats"];
+    $CPUKEYForStats = @$_GET["CPUKEYForStats"];
     $APIKEYForStats;
     /*Get API Key */
     if(isset($CPUKEYForStats)) {
@@ -113,7 +113,7 @@
                   $xbox = new Api($APIKEYForStats);
                   $data = $xbox->get('account');
                   $newfilename = "profile.json";
-                  $local_path = "/var/www/html/XBLIO/ach/files/";
+                  //$local_path = "/var/www/html/XBLIO/ach/files/";
 
                   // Write the contents back to the file
                   file_put_contents($local_path.$newfilename, $data);

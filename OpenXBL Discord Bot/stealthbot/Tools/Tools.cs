@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.IO;
-
+using Nini.Config;
 namespace stealthbot
 {
 
@@ -21,40 +21,43 @@ namespace stealthbot
         private string path;
         string SettingsName = "config";
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
-
-        [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
-
+      
+        //[DllImport("kernel32")]
+        //private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
+        //[DllImport("kernel32")]
+        //private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
 
         public IniParsing(string INIPath)
         {
             //path = INIPath;
             path = new FileInfo(INIPath ?? SettingsName + ".ini").FullName.ToString();
-        }
 
+        }
+        
         public void IniWriteValue(string Section, string Key, string Value)
         {
-            WritePrivateProfileString(Section, Key, Value, this.path);
+            //WritePrivateProfileString(Section, Key, Value, this.path);
         }
 
-        public string IniReadValue(string Section, string Key)
+        /*public string IniReadValue(string Section, string Key)
         {
             StringBuilder temp = new StringBuilder(255);
             int i = GetPrivateProfileString(Section, Key, "", temp, 255, this.path);
             return temp.ToString();
-        }
+        }*/
 
     }
 
     class Tools
     {
         public static IniParsing LoadedIni;
+        public static IConfigSource source = new IniConfigSource("config.ini");
+        /*Nini Supporting Documentation https://nini.sourceforge.net/Manual/NiniManual-2.htm#ASimpleExample */
 
         public static bool Getdebugmode()
         {
-            string debug = LoadedIni.IniReadValue("Config", "DebugMode");
+            //string debug = LoadedIni.IniReadValue("Config", "DebugMode");
+            string debug = source.Configs["Config"].Get("DebugMode");
             bool status = false;
             if (debug == "true")
             {
@@ -69,39 +72,54 @@ namespace stealthbot
             return status;
         }
 
+        public static string GetURL()
+        {
+
+            //return LoadedIni.IniReadValue("OpenXbl", "VPSTRING");
+            return source.Configs["Config"].Get("URL");
+        }
+
         public static string GetOpenXblVPS()
         {
-            return LoadedIni.IniReadValue("OpenXbl", "VPSTRING");
+
+            //return LoadedIni.IniReadValue("OpenXbl", "VPSTRING");
+            return source.Configs["OpenXbl"].Get("VPSTRING");
         }
 
         public static string GetOpenXblApiKey()
         {
-            return LoadedIni.IniReadValue("OpenXbl", "APIKEY");
+            //return LoadedIni.IniReadValue("OpenXbl", "APIKEY");
+            return source.Configs["OpenXbl"].Get("APIKEY");
         }
 
         public static string GetOpenDiscordAPIToken()
         {
-            return LoadedIni.IniReadValue("Config", "DiscordAPIToken");
+            //return LoadedIni.IniReadValue("Config", "DiscordAPIToken");
+            return source.Configs["Config"].Get("DiscordAPIToken");
         }
 
         public static string GetSqlHostName()
         {
-            return LoadedIni.IniReadValue("mysql", "host");
+            //return LoadedIni.IniReadValue("mysql", "host");
+            return source.Configs["mysql"].Get("host");
         }
 
         public static string GetSqlUserName()
         {
-            return LoadedIni.IniReadValue("mysql", "username");
+            //return LoadedIni.IniReadValue("mysql", "username");
+            return source.Configs["mysql"].Get("username");
         }
 
         public static string GetSqlPassword()
         {
-            return LoadedIni.IniReadValue("mysql", "password");
+            //return LoadedIni.IniReadValue("mysql", "password");
+            return source.Configs["mysql"].Get("password");
         }
 
         public static string GetSqlDatabase()
         {
-            return LoadedIni.IniReadValue("mysql", "database");
+            //return LoadedIni.IniReadValue("mysql", "database");
+            return source.Configs["mysql"].Get("database");
         }
 
         static Random random = new Random();

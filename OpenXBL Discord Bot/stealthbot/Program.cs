@@ -77,6 +77,7 @@ namespace stealthbot
 
             Tools.LoadedIni = new IniParsing("config.ini");
 
+            OpenXBL.URL = Tools.GetURL();
             OpenXBL.VPS = Tools.GetOpenXblVPS();
             config.Global.OpebXblApiToken = Tools.GetOpenXblApiKey();
             config.Global.debug = Tools.Getdebugmode();
@@ -90,6 +91,7 @@ namespace stealthbot
             Console.Write("SQL Database: {0}\n", Global.Database);
             Console.Write("Using OpenXbl ApiKey: {0}\n", config.Global.OpebXblApiToken);
             Console.Write("OpenXbl VPS set to: {0}\n", config.Global.VPSString);
+            Console.Write("Website URL set to: {0}\n", config.Global.URL);
             Console.Write("DiscordApiToken set to: {0}\n", Global.DiscordApiToken);
             Console.Write("Debug Mode: {0}\n", config.Global.debug);
 

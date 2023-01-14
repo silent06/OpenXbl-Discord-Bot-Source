@@ -4,11 +4,12 @@ include('../config.php');
 
 $NumberoFHistory=@$_GET['NumberoFHistory'];
 $NumberoFActivity=@$_GET['NumberoFActivity'];
-    /*Json Files */
-    $newfilename =   "$ACH_XUID.json";
 
-    $local_pathFeed = $LocalVpsFolder."activity/feed/";
-    $local_pathHistory = $LocalVpsFolder."activity/history/";
+/*Json Files */
+$newfilename =   "$ACH_XUID.json";
+
+$local_pathFeed = $LocalVpsFolder."activity/feed/";
+$local_pathHistory = $LocalVpsFolder."activity/history/";
 
 
 if(isset($NumberoFActivity)) {

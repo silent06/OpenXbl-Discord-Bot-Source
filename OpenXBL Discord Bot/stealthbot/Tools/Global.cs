@@ -31,6 +31,7 @@ namespace stealthbot
 
         public string APIKEY;
         public static string VPS;
+        public static string URL;
     }
 
 }

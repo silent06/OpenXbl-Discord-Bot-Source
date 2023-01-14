@@ -797,6 +797,15 @@
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
         }
+      },
+      "Trove.Nini/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Nini.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Nini.dll": {}
+        }
       }
     }
   },
@@ -3052,6 +3061,18 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Trove.Nini/1.1.0": {
+      "sha512": "4ALsCMG9Afh7GG8sAAKpdpQqxLP0lfE+SasceH76l5arAZP6362SMq7Bm20U3M6r9MLO1Eg8U8/a+PiFlo1JIA==",
+      "type": "package",
+      "path": "trove.nini/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Nini.dll",
+        "trove.nini.1.1.0.nupkg.sha512",
+        "trove.nini.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -3061,7 +3082,8 @@
       "MySql.Data >= 8.0.27",
       "MySqlConnector >= 2.1.2",
       "System.Security.Permissions >= 6.0.0",
-      "System.Text.Json >= 6.0.5"
+      "System.Text.Json >= 6.0.5",
+      "Trove.Nini >= 1.1.0"
     ]
   },
   "packageFolders": {
@@ -3134,6 +3156,10 @@
           "System.Text.Json": {
             "target": "Package",
             "version": "[6.0.5, )"
+          },
+          "Trove.Nini": {
+            "target": "Package",
+            "version": "[1.1.0, )"
           }
         },
         "imports": [
@@ -3143,5 +3169,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Trove.Nini 1.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Trove.Nini",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

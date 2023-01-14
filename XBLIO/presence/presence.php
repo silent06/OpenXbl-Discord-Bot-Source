@@ -9,7 +9,7 @@
     require __DIR__ . '/../vendor/autoload.php';
     use \OpenXBL\Api;
 
-    $CPUKEYForStats = $_GET["CPUKEYForStats"];
+    $CPUKEYForStats = @$_GET["CPUKEYForStats"];
     $APIKEYForStats;
     /*Get API Key */
     if(isset($CPUKEYForStats)) {

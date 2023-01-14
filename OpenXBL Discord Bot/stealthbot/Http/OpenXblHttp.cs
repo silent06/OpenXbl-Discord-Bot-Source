@@ -156,7 +156,7 @@ namespace DiscordBot
 
                 }
                 /*Left here for future Reference*/
-                //Console.WriteLine(strResponseValue);
+                Console.WriteLine(strResponseValue);
                 /*try
                 {
                     using (FileStream fileStream = File.Open(Filepath.filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))

@@ -25,9 +25,13 @@ namespace stealthbot
             /*Your VPS URL*/
             internal static string VPSString = "http://" + OpenXBL.VPS + "/";
 
+            /*Your Main Website URL*/
+            internal static string URL = "https://" + OpenXBL.URL + "/";
+
             /*OpenXbl URL strings*/
             internal static string CheckXBLAccount = "account";
             internal static string XboxProfileSearch = "friends/search?gt=";
+            internal static string RandomGamerTag = "generate/gamertag";
             internal static string GetScreenshots = "dvr/screenshots";
             internal static string ClubOwned = "clubs/owned";
             internal static string ClubSearch = "clubs/find?q=";
@@ -47,22 +51,22 @@ namespace stealthbot
 
             /*ActivityFeed*/
             internal static string ActivityFeedDL = VPSString + "XBLIO/xbox.php?ActivityFeed=activity/feed&APIKEY=";
-            internal static string ActivityFeedUserString = VPSString + "XBLIO/activity/?ActivityFeed&ACHXUID=";
+            internal static string ActivityFeedUserString = URL + "XBLIO/activity/?ActivityFeed&ACHXUID=";
             internal static string NumberoFPosts = VPSString + "XBLIO/activity/stats.php?NumberoFActivity&ACHXUID=";
 
             /*ActivityHistory*/
             internal static string ActivityHistoryDL = VPSString + "XBLIO/xbox.php?Activityhistory=activity/history&APIKEY=";
-            internal static string ActivityHistoryUserString = VPSString + "XBLIO/activity/?ActivityHistory&ACHXUID=";
+            internal static string ActivityHistoryUserString = URL + "XBLIO/activity/?ActivityHistory&ACHXUID=";
             internal static string NumberoFPostsh = VPSString + "XBLIO/activity/stats.php?NumberoFHistory&ACHXUID=";
               
 
             /*GameClips*/
             internal static string ClipListdownload = VPSString + "XBLIO/xbox.php?gameclips=dvr/gameclips";
-            internal static string ClipUserString = VPSString + "XBLIO/gameclips/?gameclips";
+            internal static string ClipUserString = URL + "XBLIO/gameclips/?gameclips";
 
             /*GameClips of Friends*/
             internal static string GameclipsByXUIDdownload = VPSString + "XBLIO/xbox.php?friendsgameclips=dvr/gameclips/?xuid=";
-            internal static string GameclipsByXUIDUserString = VPSString + "XBLIO/gameclips/?gameclipsByXUID&ACHXUID=";
+            internal static string GameclipsByXUIDUserString = URL + "XBLIO/gameclips/?gameclipsByXUID&ACHXUID=";
 
             /*AddFriend RemoveFriend*/
             internal static string AddFriend = VPSString + "XBLIO/xbox.php?AddFriend=friends/add/";
@@ -90,11 +94,11 @@ namespace stealthbot
 
             /*GetAchievementStats*/
             internal static string GetAchievementStatsD = VPSString + "XBLIO/xbox.php?achievementstats=achievements/stats/";
-            internal static string GetAchievementStatsUserString = VPSString + "XBLIO/ach/?achievementstats&CPUKEYForStats=";
+            internal static string GetAchievementStatsUserString = URL + "XBLIO/ach/?achievementstats&CPUKEYForStats=";
 
             /*GetPlayerAchievementTitle*/
             internal static string GetPlayerAchievementTitle = VPSString + "XBLIO/xbox.php?SpecificGameAchievements=/achievements/title/";
-            internal static string GetPlayerUserString = VPSString + "XBLIO/ach/?achievementsSpecificlist";
+            internal static string GetPlayerUserString = URL + "XBLIO/ach/?achievementsSpecificlist";
 
             /*Requestfriendslist*/
             internal static string friendslistdownload = VPSString + "XBLIO/xbox.php?anotherfriendlist=friends?xuid=";
@@ -135,7 +139,7 @@ namespace stealthbot
             /*Presence*/
             internal static string Presencedownload = VPSString + "XBLIO/xbox.php?presence=presence&APIKEY=";
             internal static string presence = VPSString + "XBLIO/presence/presence.php?presenceList&CPUKEYForStats=";
-            internal static string presencelink = VPSString + "XBLIO/presence/site/?presenceList&CPUKEYForStats=";
+            internal static string presencelink = URL + "XBLIO/presence/site/?presenceList&CPUKEYForStats=";
 
             /*GetFriendsPresence*/
             internal static string GetFriendsPresencedownload = VPSString + "XBLIO/xbox.php?Multipeople=";
@@ -143,12 +147,12 @@ namespace stealthbot
 
             /*Achievements*/
             internal static string Achievementdownload = VPSString + "XBLIO/xbox.php?achievements=/achievements";
-            internal static string AchievementsUserString = VPSString + "XBLIO/ach/?achievements";
+            internal static string AchievementsUserString = URL + "XBLIO/ach/?achievements";
 
 
             /*GetPlayerAchievement*/
             internal static string GetPlayerAchievementListdownload = VPSString + "XBLIO/xbox.php?achievementslist=achievements/player/";
-            internal static string UserXUIDString = VPSString + "XBLIO/ach/?achievementslist&ACHXUID=";
+            internal static string UserXUIDString = URL + "XBLIO/ach/?achievementslist&ACHXUID=";
 
             /*GetAchievementTitleHistory*/
             internal static string GetAchievementTitleHistorydownload = VPSString + "XBLIO/xbox.php?gameachievementshistory=/achievements/";
@@ -167,7 +171,7 @@ namespace stealthbot
 
             /*GetPlayersACHGame*/
             internal static string achievementsanotherplayersgamedownload = VPSString + "XBLIO/xbox.php?achievementsanotherplayersgame=achievements/player/";
-            internal static string GetPlayersUserXUIDString = VPSString + "XBLIO/achievementsanotherplayersgame/?achievementsanotherplayersgame&ACHXUID=";
+            internal static string GetPlayersUserXUIDString = URL + "XBLIO/achievementsanotherplayersgame/?achievementsanotherplayersgame&ACHXUID=";
 
             /*RecentPlayers*/
             internal static string RecentPlayersdownload = VPSString + "XBLIO/xbox.php?recentplayers=recent-players&APIKEY=";
@@ -179,11 +183,11 @@ namespace stealthbot
 
             /*ClubsIOwn*/
             internal static string ClubsIOwndownload = VPSString + "XBLIO/xbox.php?clubsowned=clubs/owned&ACHXUID=";
-            internal static string ClubUserXUIDString = VPSString + "XBLIO/clubs/?clubsowned&ACHXUID=";
+            internal static string ClubUserXUIDString = URL + "XBLIO/clubs/?clubsowned&ACHXUID=";
 
             /*ClubSummary*/
             internal static string ClubSummaryDL = VPSString + "XBLIO/xbox.php?clubs=clubs/";
-            internal static string ClubSummaryUserString = VPSString + "XBLIO/clubs/?clubsummary&ACHXUID=";
+            internal static string ClubSummaryUserString = URL + "XBLIO/clubs/?clubsummary&ACHXUID=";
         }
         
         public struct hookah
