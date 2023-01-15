@@ -1,0 +1,1 @@
+dotnet add package Trove.Nini --version 1.1.0
