@@ -133,7 +133,16 @@ namespace stealthbot
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
-        [Command("GameclipsByGamerTag"), Summary("GameclipsByXUID info")]
+        [Command("DeleteGameClip"), Summary("DeleteGameClip info")]
+        public async Task DeleteGameCliphelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}DeleteGameClip ClipId {Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
+        [Command("GameclipsByGamerTag"), Summary("info")]
         public async Task GameclipsByXUIDhelp()
         {
             EmbedBuilder Embed = new EmbedBuilder();
@@ -215,6 +224,15 @@ namespace stealthbot
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
+        [Command("ChangeApiKey"), Summary("ChangeApiKey info")]
+        public async Task ChangeApiKeyFeedhelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use whisper to the bot {config.Global.prefix}ChangeApiKey ApiKey{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
         [Command("help"), Summary("help info")]
         public async Task help()
         {
@@ -226,6 +244,7 @@ namespace stealthbot
                 $"\n{config.Global.prefix}RandomGamerTag, " +
                 $"\n{config.Global.prefix}Screenshots, " +
                 $"\n{config.Global.prefix}GameCLips, " +
+                $"\n{config.Global.prefix}DeleteGameClip, " +
                 $"\n{config.Global.prefix}GameclipsByGamerTag, " +
                 $"\n{config.Global.prefix}presence, " +
                 $"\n{config.Global.prefix}GetUserByXuid, " +
@@ -254,12 +273,14 @@ namespace stealthbot
                 $"\n{config.Global.prefix}ClubsSummary, " +
                 $"\n{config.Global.prefix}ClubSearch, " +
                 $"\n{config.Global.prefix}SingleClubSearch, " +
-                $"\n{config.Global.prefix}ActivityFeed" +
-                $"\n{config.Global.prefix}ActivityHistory" +
-                $"\n{config.Global.prefix}PostActivityFeed" +
+                $"\n{config.Global.prefix}ActivityFeed, " +
+                $"\n{config.Global.prefix}ActivityHistory, " +
+                $"\n{config.Global.prefix}PostActivityFeed, " +
                 $"\n{config.Global.prefix}AddCPUKEY, " +
                 $"\n{config.Global.prefix}AddApiKey,  " +
-                $"\n{config.Global.prefix}link " +
+                $"\n{config.Global.prefix}link, " +
+                $"\n{config.Global.prefix}DeleteApiKey, " +
+                $"\n{config.Global.prefix}ChangeApiKey " +
                 $"\n{Context.User.Mention}."
                 ); 
             Embed.WithThumbnailUrl(Context.User.GetAvatarUrl());

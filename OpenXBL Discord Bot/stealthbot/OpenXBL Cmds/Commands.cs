@@ -114,6 +114,85 @@ namespace stealthbot
             }
         }
 
+        [Command("ChangeApiKey")]
+        public async Task ChangeApiKeyCommand(string ApiKey)
+        {
+            /*Get Cpukey & APIKey*/
+            string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+            string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
+            string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+
+            EmbedBuilder Embed = new EmbedBuilder();
+            try
+            {
+
+                if (CPUKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your cpukey with : **{config.Global.prefix}link CPUKey**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else
+                {
+                    if (CheckApiKey == "APIKEY Already in database")
+                    {
+                        mysql.ChangeXBLKey(CPUKey, ApiKey);
+                        Embed.WithDescription($"{Context.User.Mention} Your ApiKey was Changed.");
+                        Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                        await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                    }
+                    else if (CheckApiKey == "Not Registered")
+                    {
+                        Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                        Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                        Embed.WithFooter(config.Global.BotName);
+                        Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                        await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "Unable to Change Apikey :*(");/*Use for Debugging*/
+            }
+        }
+
+        [Command("DeleteApiKey")]
+        public async Task DeleteApiKeyCommand()
+        {
+            /*Get Cpukey & APIKey*/
+            string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+            string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+
+            EmbedBuilder Embed = new EmbedBuilder();
+            try
+            {
+
+                if (CPUKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your cpukey with : **{config.Global.prefix}link CPUKey**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else
+                {
+                    mysql.DeleteXBLKey(CPUKey, GetApikey);
+                    Embed.WithDescription($"{Context.User.Mention} Your ApiKey has been deleted.");
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "Unable to Delete ApiKey :*(");/*Use for Debugging*/
+            }
+        }
+
         [Command("AddApiKey")]
         public async Task AddApiKeyCommand(string AddApiKey)
         {
@@ -144,9 +223,10 @@ namespace stealthbot
                     }
                     else if (CheckApiKey == "Not Registered")
                     {
-                       mysql.AddXBLkey(CPUKey, ref getxbldata);
-                       Embed.AddField("API_KEY Added:", AddApiKey, true);
-                       Embed.AddField("Type ", $"{config.Global.prefix}Account to confirm your registry completion!", true);
+                        mysql.AddXBLkey(CPUKey, ref getxbldata);
+                        Embed.AddField("API_KEY Added:", AddApiKey, true);
+                        Embed.AddField("Type ", $"{config.Global.prefix}Account to confirm your registry completion!", true);
+                        Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                         await Context.Channel.SendMessageAsync("", false, Embed.Build());
                     }                 
 
@@ -154,7 +234,7 @@ namespace stealthbot
             }
             catch (Exception ex)
             {
-                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "Unable to Add ApiKey!");/*Use for Debugging*/
             }
         }
 
@@ -164,11 +244,8 @@ namespace stealthbot
             try
             {
                 EmbedBuilder Embed = new EmbedBuilder();
-
-
                 ClientInfo Client = new ClientInfo();
-                bool HasDiscordId = mysql.GetFriendsCPUKey(Context.User.ToString(), ref Client);
-               
+                bool HasDiscordId = mysql.GetFriendsCPUKey(Context.User.ToString(), ref Client);         
 
                 if (!HasDiscordId)
                 {

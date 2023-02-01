@@ -54,6 +54,7 @@ namespace OpenXbl
                     if (UserString == "") { UserString = "Server isn't responding! try again"; }
                     Embed.AddField("Find Complete list here:", $"[LiFeOfAGaMeR]({UserString})");
                     Embed.WithImageUrl(config.Global.EmbededImage);
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
 
                 }
@@ -103,6 +104,7 @@ namespace OpenXbl
                     Embed.AddField("Clip List for ", gamertag);
                     Embed.AddField("Find Complete list here:", $"[LiFeOfAGaMeR]({GameclipsByXUIDUserString})");
                     Embed.WithImageUrl(config.Global.EmbededImage);
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
 
                 }
@@ -184,6 +186,38 @@ namespace OpenXbl
             catch (Exception ex)
             {
                 await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
+            }
+
+        }
+        /*Untested*/
+        [Command("DeleteGameClip")]
+        public async Task DeleteGameClip(string ClipId) {
+
+            try {
+
+                string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+                string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
+                string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+                if (CheckApiKey == "APIKEY Already in database") {
+
+                    var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.DeleteGameClip + ClipId, "null", GetApikey, config.Global.httpRequestA = true);
+                    Embed.AddField("Clip Deleted:", ClipId);
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else if (CheckApiKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "Failed to delete clip!");/*Use for Debugging*/
             }
 
         }

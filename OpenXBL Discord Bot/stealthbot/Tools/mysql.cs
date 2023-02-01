@@ -159,6 +159,44 @@ namespace stealthbot
             }
         }
 
+        public static void DeleteXBLKey(string CPUKEY, string XblKey)
+        {
+            using (var db = Setup())
+            {
+                Connect(db);
+                using (var command = db.CreateCommand())
+                {
+                    command.CommandText = string.Format("DELETE FROM OpenXbl WHERE `CPUKEY` = @cpu_key");
+                    command.Parameters.AddWithValue("@cpu_key", CPUKEY);
+                    command.ExecuteNonQuery();
+                }
+                Disconnect(db);
+            }
+        }
+
+        public static void ChangeXBLKey(string CPUKEY, string XblKey)
+        {
+            try
+            {
+                using (var db = Setup())
+                {
+                    Connect(db);
+                    using (var command = db.CreateCommand())
+                    {
+                        command.CommandText = string.Format("UPDATE `OpenXbl` SET APIKEY=@XblKey WHERE CPUKEY=@CPU");
+                        command.Parameters.AddWithValue("@CPU", CPUKEY);
+                        command.Parameters.AddWithValue("@XblKey", XblKey);
+                        command.ExecuteNonQuery();
+                    }
+                    Disconnect(db);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         public static void AddXBLkey(string CPUKEY, ref OpenXBL getxbldata)
         {
             using (var db = Setup())

@@ -33,6 +33,7 @@ namespace stealthbot
             internal static string XboxProfileSearch = "friends/search?gt=";
             internal static string RandomGamerTag = "generate/gamertag";
             internal static string GetScreenshots = "dvr/screenshots";
+            internal static string DeleteGameClip = "dvr/gameclips/delete/";
             internal static string ClubOwned = "clubs/owned";
             internal static string ClubSearch = "clubs/find?q=";
             internal static string ClubCreate = "clubs/create";
