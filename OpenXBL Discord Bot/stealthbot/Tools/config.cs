@@ -36,6 +36,9 @@ namespace stealthbot
             internal static string ClubOwned = "clubs/owned";
             internal static string ClubSearch = "clubs/find?q=";
             internal static string ClubCreate = "clubs/create";
+            internal static string ClubInvite = "clubs/{clubId}/invite/";
+            internal static string ClubDelete = "clubs/delete/";
+            internal static string ClubReserve = "clubs/reserve";
             internal static string ClubSummary = "clubs/";
 
             /*OpenXbl Api Key*/

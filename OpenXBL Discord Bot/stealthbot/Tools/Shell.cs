@@ -14,11 +14,11 @@ namespace stealthbot
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    //FileName = "/bin/bash",/*For linx*/
-                    //Arguments = $"-c \"{escapedArgs}\"",/*For linx*/
+                    FileName = "/bin/bash",/*For linx*/
+                    Arguments = $"-c \"{escapedArgs}\"",/*For linx*/
 
-                    FileName = "cmd.exe",/*For Windows*/
-                    Arguments = $"/c \"{escapedArgs}\"",/*For Windows*/
+                    //FileName = "cmd.exe",/*For Windows*/
+                    //Arguments = $"/c \"{escapedArgs}\"",/*For Windows*/
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     CreateNoWindow = false,

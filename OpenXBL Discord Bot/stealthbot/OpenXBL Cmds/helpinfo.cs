@@ -159,7 +159,17 @@ namespace stealthbot
             Embed.WithDescription($"To use Enter {config.Global.prefix}GetFriendsAchStats titleId FulldiscordName(they must be registered in Database){Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
-        
+
+        [Command("ClubCreate"), Summary("ClubCreate info")]
+        public async Task ClubCreatehelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubCreate ClubName Clubtype{Context.User.Mention}.");
+            Embed.AddField("ClubCreate Instructions:", "There are 3 Club-types: Hidden, Private, Open. Hidden is 3, Private 2, Open 1, So club type should be enter as an integer of 1, 2 or 3");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
         [Command("ClubsSummary"), Summary("ClubsSummary info")]
         public async Task ClubsSummaryhelp()
         {
@@ -168,13 +178,22 @@ namespace stealthbot
             Embed.WithDescription($"To use Enter {config.Global.prefix}ClubsSummary clubId{Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
-
+        
         [Command("ClubSearch"), Summary("ClubSearch info")]
         public async Task ClubSearchhelp()
         {
             EmbedBuilder Embed = new EmbedBuilder();
             Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
             Embed.WithDescription($"To use Enter {config.Global.prefix}ClubSearch ClubName{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+        
+        [Command("ClubDelete"), Summary("ClubDelete info")]
+        public async Task ClubDeletehelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubDelete ClubName{Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
@@ -229,6 +248,8 @@ namespace stealthbot
                 $"\n{config.Global.prefix}GetFriendsAchStats, " +
                 $"\n{config.Global.prefix}RecentPlayers, " +
                 $"\n{config.Global.prefix}ReserveClub, " +
+                $"\n{config.Global.prefix}ClubDelete, " +
+                $"\n{config.Global.prefix}ClubCreate, " +
                 $"\n{config.Global.prefix}ClubsIOwn, " +
                 $"\n{config.Global.prefix}ClubsSummary, " +
                 $"\n{config.Global.prefix}ClubSearch, " +

@@ -7,7 +7,7 @@
     require __DIR__ . '/vendor/autoload.php';
     use \OpenXBL\Api;
     //use \OpenXBL\Api;
-    //header('Content-type: text/plain');
+    header('Content-type: text/plain');
     include('config.php'); 
     
     /*OpenXbl Api Variables */

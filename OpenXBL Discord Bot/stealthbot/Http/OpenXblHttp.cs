@@ -156,10 +156,12 @@ namespace DiscordBot
 
                 }
                 /*Left here for future Reference*/
-                Console.WriteLine(strResponseValue);
+                if (config.Global.debug) Console.WriteLine(strResponseValue);
+                /*Please note Linux file permissions made be denied if not set correctly*/
+
                 /*try
                 {
-                    using (FileStream fileStream = File.Open(Filepath.filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
+                    using (FileStream fileStream = File.Open("/root/OpenXbl", FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
                     {
                         StreamWriter writer = new StreamWriter(fileStream);
                         Console.WriteLine("Writing json file to folder");
