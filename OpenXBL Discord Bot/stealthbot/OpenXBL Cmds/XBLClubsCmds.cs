@@ -406,13 +406,12 @@ namespace OpenXbl
 
                     var json2 = JsonSerializer.Serialize(user);
                     var httpPost = OpenXblHttp.RestClient.makeRequestAsync("clubs/" + ClubId +  "/invite/" + xuid, user, GetApikey, config.Global.httpRequestA = false);
-                    Console.WriteLine(user);
-                    Console.WriteLine("clubs/" + ClubId + "/invite/" + xuid);
-                    //string json = OpenXblHttp.RestClient.strResponseValue;
-                    //var doc = JsonDocument.Parse(json);
-                    //var id = doc.RootElement.GetProperty("id");
-                    //Embed.AddField("Expires:", expires);
-                    Embed.AddField("Success! Club Invite Sent!", ClubName);
+                    string json = OpenXblHttp.RestClient.strResponseValue;
+                    var doc = JsonDocument.Parse(json);
+                    var invite = doc.RootElement.GetProperty("roles");
+                    Embed.AddField("Success?", invite);
+                    Embed.AddField("Club Invite Sent to:", GamerTag);
+                    Embed.AddField("ClubName:", ClubName);
                     Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
 

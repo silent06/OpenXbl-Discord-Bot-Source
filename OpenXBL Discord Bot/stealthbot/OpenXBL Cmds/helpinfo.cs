@@ -206,6 +206,15 @@ namespace stealthbot
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
+        [Command("ClubInvite"), Summary("ClubInvite info")]
+        public async Task ClubInvitehelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubInvite ClubName GamerTag{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
         [Command("SingleClubSearch"), Summary("SingleClubSearch info")]
         public async Task SingleClubSearchhelp()
         {
@@ -272,6 +281,7 @@ namespace stealthbot
                 $"\n{config.Global.prefix}ClubsIOwn, " +
                 $"\n{config.Global.prefix}ClubsSummary, " +
                 $"\n{config.Global.prefix}ClubSearch, " +
+                $"\n{config.Global.prefix}ClubInvite, " +
                 $"\n{config.Global.prefix}SingleClubSearch, " +
                 $"\n{config.Global.prefix}ActivityFeed, " +
                 $"\n{config.Global.prefix}ActivityHistory, " +
