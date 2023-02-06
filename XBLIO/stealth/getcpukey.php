@@ -1,7 +1,7 @@
 <?php
 include('sql/Conn.php'); 
 
-$discordid = $_GET["discordid"];
+$discordid = @$_GET["discordid"];
 
 $sql = "SELECT * FROM `users` WHERE `discordid`='" . $discordid . "' LIMIT 1";
 $result = $conn->query($sql);

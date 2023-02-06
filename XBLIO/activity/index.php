@@ -141,7 +141,7 @@
                 <div class="card-header text-white" style="background-color: #32EE3F;"> Feed </div>
                   <img class="card-img-top" src="<?php if(!empty($people['screenshotId']))  { echo "<b style=color:red;> ScreenShot of: <p><u> " .$people['contentTitle'].  " <span href= '".$people['screenshotThumbnail']." '> <img src= '".$people['screenshotThumbnail']."'  width=100 height=100 border=0 ></span></b></u></p> ";}  ?>" alt="<?php ; ?>">
                   <h2 class="h3 mb-0">
-                    <?php echo "<dt>" .$people['name']. "</dt>";?>                 
+                    <?php echo "<dt>" .@$people['name']. "</dt>";?>                 
                   </h2>
                     <p class="lead">
                         <?php if(!empty($people['screenshotId'])) { echo "<b style=color:red;><u> Date: </u> "  .$people['date']. "</b>"; }?>
@@ -155,7 +155,7 @@
                         <?php if(!empty($people['screenshotId'])) { echo "<b style=color:red;><u>Views: </u> "  .$people['numViews']. "</b>"; }?>
                     </p>
 
-                    <?php if($people['postType'] == "Link") { ?>
+                    <?php if(@$people['postType'] == "Link") { ?>
 
 
                       <p class="lead">
@@ -177,15 +177,15 @@
                     <?php } else { ?>
 
                       <p class="lead">
-                        <?php echo "<b style=color:red;><u> " .$people['contentTitle'].  " <span href= '".$people['contentImageUri']." '> <img src= '".$people['contentImageUri']."'  width=100 height=100 border=0 ></span></b></u> "; ?>
+                        <?php echo "<b style=color:red;><u> " .@$people['contentTitle'].  " <span href= '".@$people['contentImageUri']." '> <img src= '".$people['contentImageUri']."'  width=100 height=100 border=0 ></span></b></u> "; ?>
                       </p>
 
                       <p class="lead">
-                        <?php echo "<dt><b style=color:red; ><u> Title ID:  </u>"  .$people['titleId']. "</b> </dt>"; ?>
+                        <?php echo "<dt><b style=color:red; ><u> Title ID:  </u>"  .@$people['titleId']. "</b> </dt>"; ?>
                       </p>
 
                       <p class="lead">
-                        <?php echo "<dt><b style=color:red; ><u> Achievements Earned Date: </u>"  .$people['date']. "</b></dt>"; ?>
+                        <?php echo "<dt><b style=color:red; ><u> Achievements Earned Date: </u>"  .@$people['date']. "</b></dt>"; ?>
                       </p>
 
                       <p class="lead">
@@ -193,15 +193,15 @@
                       </p>
 
                       <p class="lead">
-                        <?php echo "<dt><b style=color:red;><u> Author: </u> "  .$people['authorInfo']['modernGamertag']. "</b</dt>"; ?>
+                        <?php echo "<dt><b style=color:red;><u> Author: </u> "  .@$people['authorInfo']['modernGamertag']. "</b</dt>"; ?>
                       </p>
 
                       <p class="lead">
-                        <?php echo "<dt><b style=color:red;><u> Score Earned: </u> "  .$people['gamerscore']. "</b></dt>"; ?>
+                        <?php echo "<dt><b style=color:red;><u> Score Earned: </u> "  .@$people['gamerscore']. "</b></dt>"; ?>
                       </p>
 
                       <p class="lead">
-                        <?php echo "<dt><a><span href= '".$people['authorInfo']['imageUrl']." '> <img src= '".$people['authorInfo']['imageUrl']."' width=100 height=100 border=0 />  </span></a></dt>"; ?>
+                        <?php echo "<dt><a><span href= '".@$people['authorInfo']['imageUrl']." '> <img src= '".@$people['authorInfo']['imageUrl']."' width=100 height=100 border=0 />  </span></a></dt>"; ?>
                       </p>
                       <?php } ?>
 

@@ -240,6 +240,59 @@ namespace OpenXbl
             }
         }
 
+        [Command("ClubRecommendations")]
+        public async Task ClubRecommendations()
+        {
+
+            try
+            {
+                string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+                string CheckApiKey = new WebClient().DownloadString(config.Global.CheckApiKey + CPUKey);
+                string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
+
+                if (CheckApiKey == "APIKEY Already in database")
+                {
+                    var user = "{\"\":" + $"\"\"" + "}";
+                    var json2 = JsonSerializer.Serialize(user);
+                    var httpPost = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubReccomendations, user, GetApikey, config.Global.httpRequestA = false);
+
+                    string json = OpenXblHttp.RestClient.strResponseValue;
+                    var obj = JObject.Parse(json);
+                    var ClubName = "";
+                    var ClubId = "";
+                    var description = "";
+                    //var displayimage = "";
+                    foreach (var dataItem in obj["clubs"])
+                    {
+
+                        ClubName = dataItem["profile"]["name"]["value"].Value<string>();
+                        ClubId = dataItem["id"].Value<string>();
+                        description = dataItem["profile"]["description"]["value"].Value<string>();
+                        Embed.AddField($"ClubName(ID: {ClubId}):", ClubName);
+                        Embed.AddField("Description:", description);
+                        //displayimage = dataItem["profile"]["displayImageUrl"]["value"].Value<string>();
+                        //Embed.WithImageUrl(displayimage.ToString());
+                    }
+                    Embed.WithDescription($"Use **{config.Global.prefix}SingleClubSearch or {config.Global.prefix}ClubsSummary to get more details for desired club**");
+                    Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+                else if (CheckApiKey == "Not Registered")
+                {
+                    Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+                    Embed.WithAuthor("Register yourself [Link]https://xbl.io then Message the bot to link key ");
+                    Embed.WithFooter(config.Global.BotName);
+                    Embed.WithDescription($"Sorry {Context.User.Mention} \n you need to link your API_KEY with : **{config.Global.prefix}AddApiKey API_KEY**.");
+                    await Context.Channel.SendMessageAsync("", false, Embed.Build());
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await Context.Channel.SendMessageAsync(config.Global.debug ? ex.Message : "server is offline");/*Use for Debugging*/
+            }
+        }
+
         [Command("SingleClubSearch")]
         public async Task SingleClubSearh(string clubName) {
 
@@ -258,9 +311,11 @@ namespace OpenXbl
                     var ClubName = doc.RootElement.GetProperty("results")[0].GetProperty("text");
                     var ClubId = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("id");
                     var displayimage = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("displayImageUrl");
-
+                    var description = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("description");
+                    
                     Embed.AddField($"ClubName:", ClubName);
                     Embed.AddField($"ClubId:", ClubId);
+                    Embed.AddField($"Description:", description);
                     Embed.WithImageUrl(displayimage.ToString());
                     Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());

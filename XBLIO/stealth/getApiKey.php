@@ -1,7 +1,7 @@
 <?php
     include('sql/Conn.php'); 
-    $CPUKEY = $_GET["CPUKEY"];
-    $APIKEY = $_GET["APIKEY"];
+    $CPUKEY = @$_GET["CPUKEY"];
+    $APIKEY = @$_GET["APIKEY"];
 
     /*Get API Key */
     if(isset($APIKEY)) {

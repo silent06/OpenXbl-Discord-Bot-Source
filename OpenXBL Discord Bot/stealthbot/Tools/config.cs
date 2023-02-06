@@ -26,7 +26,7 @@ namespace stealthbot
             internal static string VPSString = "http://" + OpenXBL.VPS + "/";
 
             /*Your Main Website URL*/
-            internal static string URL = "https://" + OpenXBL.URL + "/";
+            internal static string URL = "http://" + OpenXBL.URL + "/";
 
             /*OpenXbl URL strings*/
             internal static string CheckXBLAccount = "account";
@@ -41,6 +41,7 @@ namespace stealthbot
             internal static string ClubDelete = "clubs/delete/";
             internal static string ClubReserve = "clubs/reserve";
             internal static string ClubSummary = "clubs/";
+            internal static string ClubReccomendations = "clubs/recommendations";
 
             /*OpenXbl Api Key*/
             internal static string OpebXblApiToken = "";

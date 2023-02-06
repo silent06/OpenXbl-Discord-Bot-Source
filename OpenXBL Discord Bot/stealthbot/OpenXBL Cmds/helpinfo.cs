@@ -283,6 +283,7 @@ namespace stealthbot
                 $"\n{config.Global.prefix}ClubSearch, " +
                 $"\n{config.Global.prefix}ClubInvite, " +
                 $"\n{config.Global.prefix}SingleClubSearch, " +
+                $"\n{config.Global.prefix}ClubRecommendations, " +
                 $"\n{config.Global.prefix}ActivityFeed, " +
                 $"\n{config.Global.prefix}ActivityHistory, " +
                 $"\n{config.Global.prefix}PostActivityFeed, " +
