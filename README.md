@@ -11,21 +11,7 @@ This should fix it-
 https://php.watch/articles/composer-ignore-platform-req
 
 
-webserver folder should be set in these php's:
-xbox.php
-ach/index.php
-ach/multipresence.php
-ach/history.php
-activity/index.php
-activity/stats.php
-clubs/index.php
-gameclips/index.php
-achievementsanotherplayersgame/index.php
-stealth/sql/Conn.php(enter sql info)
-presence/site/index.php
-presence/index.php
-presence/presence.php
-presence/multipresence.php
+webserver root folder should be set in these config.php & sql info goes into stealth/sql/Conn.php. OpenXbl Api key goes into xbox.php.
 
 
 Dont forget to fill out config.ini! Found in discord bot folder. 
