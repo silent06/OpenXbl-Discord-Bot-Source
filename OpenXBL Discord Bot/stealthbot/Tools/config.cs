@@ -20,7 +20,7 @@ namespace stealthbot
 
             //Bot Settings
             internal static string BotName = "OpenXbl";
-            internal static string prefix = "$";
+            internal static string prefix;
 
             /*Your VPS URL*/
             internal static string VPSString = "http://" + OpenXBL.VPS + "/";

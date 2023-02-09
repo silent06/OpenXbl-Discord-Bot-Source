@@ -12,6 +12,21 @@ namespace stealthbot
     public class Commands : ModuleBase<SocketCommandContext>
     {
 
+        [Command("ChangeTrigger")]
+        [RequireContext(ContextType.Guild)]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task ChangeTrigger([Remainder] string NewTrigger)
+        {
+            if (string.IsNullOrWhiteSpace(NewTrigger))
+            {
+                return;
+            }
+
+            config.Global.prefix = NewTrigger;
+            await Context.Channel.SendMessageAsync($"**{Context.User}** Trigger Changed to: **{config.Global.prefix}** ");
+
+        }
+
         [Command(".ban")]
         [RequireContext(ContextType.Guild)]
         [RequireUserPermission(GuildPermission.Administrator)]

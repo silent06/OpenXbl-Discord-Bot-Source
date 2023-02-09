@@ -98,6 +98,12 @@ namespace stealthbot
             return source.Configs["Config"].Get("DiscordAPIToken");
         }
 
+        public static string GetOpenDiscordTrigger()
+        {
+            //return LoadedIni.IniReadValue("Config", "DiscordAPIToken");
+            return source.Configs["Config"].Get("DiscordTrigger");
+        }
+
         public static string GetSqlHostName()
         {
             //return LoadedIni.IniReadValue("mysql", "host");

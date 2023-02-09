@@ -193,7 +193,7 @@ namespace stealthbot
         {
             EmbedBuilder Embed = new EmbedBuilder();
             Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
-            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubSearch ClubName{Context.User.Mention}.");
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubSearch ClubName(For names with spaces use \" \" & % between spaces. E.g. \"Silent%Guy\"){Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
         
@@ -211,7 +211,7 @@ namespace stealthbot
         {
             EmbedBuilder Embed = new EmbedBuilder();
             Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
-            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubInvite ClubName GamerTag{Context.User.Mention}.");
+            Embed.WithDescription($"To use Enter {config.Global.prefix}ClubInvite ClubName GamerTag(For names with spaces use \" \" & % between spaces. E.g. \"Silent%Guy\"){Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
@@ -220,7 +220,7 @@ namespace stealthbot
         {
             EmbedBuilder Embed = new EmbedBuilder();
             Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
-            Embed.WithDescription($"To use Enter {config.Global.prefix}SingleClubSearch ClubName{Context.User.Mention}.");
+            Embed.WithDescription($"To use Enter {config.Global.prefix}SingleClubSearch ClubName(For names with spaces use \" \" & % between spaces. E.g. \"Silent%Guy\"){Context.User.Mention}.");
             await Context.Channel.SendMessageAsync("", false, Embed.Build());
         }
 
@@ -291,7 +291,8 @@ namespace stealthbot
                 $"\n{config.Global.prefix}AddApiKey,  " +
                 $"\n{config.Global.prefix}link, " +
                 $"\n{config.Global.prefix}DeleteApiKey, " +
-                $"\n{config.Global.prefix}ChangeApiKey " +
+                $"\n{config.Global.prefix}ChangeApiKey, " +
+                $"\n{config.Global.prefix}ChangeTrigger " +
                 $"\n{Context.User.Mention}."
                 ); 
             Embed.WithThumbnailUrl(Context.User.GetAvatarUrl());

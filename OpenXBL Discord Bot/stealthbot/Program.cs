@@ -25,7 +25,11 @@ namespace stealthbot
 
         private async Task Client_Ready()
         {
-            await Client.SetGameAsync($"{config.Global.prefix}help");
+            while (true)
+            {
+                System.Threading.Thread.Sleep(5000);
+                await Client.SetGameAsync($"{config.Global.prefix}help");
+            }
             /*while (true)
             {
                 System.Threading.Thread.Sleep(30000);
@@ -86,13 +90,14 @@ namespace stealthbot
             Global.password = Tools.GetSqlPassword();
             Global.Database = Tools.GetSqlDatabase();
             Global.DiscordApiToken = Tools.GetOpenDiscordAPIToken();
-
+            config.Global.prefix = Tools.GetOpenDiscordTrigger();
             Console.Write("SQL connected to: {0}\n", Global.host);
             Console.Write("SQL Database: {0}\n", Global.Database);
             Console.Write("Using OpenXbl ApiKey: {0}\n", config.Global.OpebXblApiToken);
             Console.Write("OpenXbl VPS set to: {0}\n", config.Global.VPSString);
             Console.Write("Website URL set to: {0}\n", config.Global.URL);
             Console.Write("DiscordApiToken set to: {0}\n", Global.DiscordApiToken);
+            Console.Write("DiscordTrigger set to: {0}\n", config.Global.prefix);
             Console.Write("Debug Mode: {0}\n", config.Global.debug);
 
 

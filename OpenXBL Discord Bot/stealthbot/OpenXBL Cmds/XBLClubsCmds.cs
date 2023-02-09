@@ -305,7 +305,7 @@ namespace OpenXbl
                 if (CheckApiKey == "APIKEY Already in database")
                 {
                     var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.ClubSearch + clubName, "null", GetApikey, config.Global.httpRequestA = true);
-
+                    Console.WriteLine(config.Global.ClubSearch + clubName);
                     string json = OpenXblHttp.RestClient.strResponseValue;
                     var doc = JsonDocument.Parse(json);
                     var ClubName = doc.RootElement.GetProperty("results")[0].GetProperty("text");
@@ -313,9 +313,9 @@ namespace OpenXbl
                     var displayimage = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("displayImageUrl");
                     var description = doc.RootElement.GetProperty("results")[0].GetProperty("result").GetProperty("description");
                     
-                    Embed.AddField($"ClubName:", ClubName);
-                    Embed.AddField($"ClubId:", ClubId);
-                    Embed.AddField($"Description:", description);
+                    Embed.AddField($"ClubName:", ClubName + ".");
+                    Embed.AddField($"ClubId:", ClubId + ".");
+                    Embed.AddField($"Description:", description + ".");
                     Embed.WithImageUrl(displayimage.ToString());
                     Embed.WithThumbnailUrl(Context.User.GetAvatarUrl() ?? Context.User.GetDefaultAvatarUrl());
                     await Context.Channel.SendMessageAsync("", false, Embed.Build());
