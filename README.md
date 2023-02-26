@@ -2,6 +2,8 @@
 OpenXbl Discord Bot Source
 Discord bot designed to pull Xbox information from xboxLive using OpenXbl Api. See https://xbl.io/ to setup account. 
 
+This was built in VS 2017 with .Net 2.1 https://dotnet.microsoft.com/en-us/download/dotnet/2.1
+
 
 
 if you get a composer error could not find package matching minimum php version? 
