@@ -16,6 +16,16 @@ namespace stealthbot
         [RequireUserPermission(GuildPermission.Administrator)]
 
 
+        [Command("link"), Summary("link info")]
+        public async Task linkhelp()
+        {
+            EmbedBuilder Embed = new EmbedBuilder();
+            Embed.WithColor(config.Global.RGB1, config.Global.RGB2, config.Global.RGG3);
+            Embed.AddField("To use Enter ", $"{config.Global.prefix}link Your 32-Character CPUKey.");
+            Embed.WithDescription($"{Context.User.Mention}.");
+            await Context.Channel.SendMessageAsync("", false, Embed.Build());
+        }
+
         [Command("GenerateRandomCPUKEY"), Summary("GenerateRandomCPUKEY info")]
         public async Task GenerateRandomCPUKEY()
         {

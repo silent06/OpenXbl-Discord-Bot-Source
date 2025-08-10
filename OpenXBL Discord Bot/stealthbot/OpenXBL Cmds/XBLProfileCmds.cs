@@ -34,8 +34,15 @@ namespace OpenXbl
             {
 
                 string CPUKey = new WebClient().DownloadString(config.Global.CPUKey + "<@!" + Context.User.Id + ">");
+
                 string GetApikey = new WebClient().DownloadString(config.Global.GetApikey + CPUKey);
                 var httpResponse = OpenXblHttp.RestClient.makeRequestAsync(config.Global.CheckXBLAccount, "null", GetApikey, config.Global.httpRequestA = true);
+
+                if (config.Global.debug) {
+                    Console.Write("UserId: {0}\n", Context.User.Id);
+                    Console.Write("CPUKey: {0}\n", CPUKey);
+                    Console.Write("GetApikey: {0}\n", GetApikey);
+                }
 
                 /*using (StreamReader r = new StreamReader("account.json")) {
                     string json = r.ReadToEnd();

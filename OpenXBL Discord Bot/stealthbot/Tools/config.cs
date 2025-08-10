@@ -10,8 +10,13 @@ namespace stealthbot
     {
         internal static class Global
         {
+
+            internal static int proxyPort;
+            internal static string RandomProxyV;
+
             internal static bool httpRequestA;
             internal static bool debug;
+            internal static bool ProxySwitch;
 
             //Bot Color
             internal static int RGB1 = 32;

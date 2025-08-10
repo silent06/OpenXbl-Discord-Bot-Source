@@ -1,1 +1,2 @@
 dotnet OpenXbl.dll
+pause

@@ -61,12 +61,40 @@ namespace DiscordBot
 #pragma warning restore CS1998 
             {
                 endPoint = "https://xbl.io/api/v2/";
+                //endPoint = Tools.Proxydownloadstring("https://xbl.io/api/v2/");
+                //config.Global.ProxySwitch = true;
+                WebProxy myproxy = new WebProxy(config.Global.RandomProxyV, true);
+                if (config.Global.ProxySwitch) {
+
+                    Tools.ProxyRandomDownload();
+                    myproxy = new WebProxy(config.Global.RandomProxyV, true);
+
+                    // Step 1: Extract properties
+                    string proxyAddress = myproxy.Address.ToString();
+                    string bypassList = string.Join(", ", myproxy.BypassList);
+                    bool useDefaultCredentials = myproxy.UseDefaultCredentials;
+
+                    // Step 2: Format the output
+                    string output = $"WebProxy Details:\n" +
+                                    $"Proxy Address: {proxyAddress}\n" +
+                                    $"Bypass List: {bypassList}\n" +
+                                    $"Use Default Credentials: {useDefaultCredentials}\n";
+
+                    // Step 3: Write to Console
+                    Console.Write("{0}", output);
+
+                }
+
+                //Console.Write("Completed Proxy: {0}\n", config.Global.RandomProxyV);
+                myproxy = new WebProxy(config.Global.RandomProxyV , true);
+                //WebProxy myproxy = new WebProxy(proxy, port);
 
                 byte[] byteArray = Encoding.UTF8.GetBytes(PostRequest);
                 httpMethod = httpType? httpVerb.GET: httpVerb.POST;
                 if (httpType)/*Get Method*/
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint + ApiString);
+                    request.Proxy = config.Global.ProxySwitch ? myproxy : null;
                     request.Method = httpMethod.ToString();
                     request.Accept = "application/json";
                     request.Accept = "en-US";
@@ -110,6 +138,7 @@ namespace DiscordBot
                 else if (!httpType)/*Post Method*/ {
 
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint + ApiString);
+                    request.Proxy = config.Global.ProxySwitch ? myproxy : null;
                     request.Method = httpMethod.ToString();
                     request.Accept = "application/json";
                     request.Accept = "en-US";

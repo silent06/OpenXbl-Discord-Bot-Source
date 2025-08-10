@@ -80,11 +80,12 @@ namespace stealthbot
             }
 
             Tools.LoadedIni = new IniParsing("config.ini");
-
+            
             OpenXBL.URL = Tools.GetURL();
             OpenXBL.VPS = Tools.GetOpenXblVPS();
             config.Global.OpebXblApiToken = Tools.GetOpenXblApiKey();
             config.Global.debug = Tools.Getdebugmode();
+            config.Global.ProxySwitch = Tools.GetProxymode();
             Global.host = Tools.GetSqlHostName();
             Global.Username = Tools.GetSqlUserName();
             Global.password = Tools.GetSqlPassword();
@@ -99,6 +100,7 @@ namespace stealthbot
             Console.Write("DiscordApiToken set to: {0}\n", Global.DiscordApiToken);
             Console.Write("DiscordTrigger set to: {0}\n", config.Global.prefix);
             Console.Write("Debug Mode: {0}\n", config.Global.debug);
+            Console.Write("Proxy Mode: {0}\n", config.Global.ProxySwitch);
 
 
             Client = new DiscordSocketClient(new DiscordSocketConfig { LogLevel = LogSeverity.Debug, MessageCacheSize = 250 });

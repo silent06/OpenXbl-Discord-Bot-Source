@@ -12,7 +12,7 @@
     
     /*OpenXbl Api Variables */
     $API_KEY = @$_GET['APIKEY'];
-    $xbox = new Api('');
+    $xbox = new Api('');/*OpenXbl Api key goes here */
     $ACH_XUID=@$_GET['ACHXUID'];
     $VPSFolder= $LocalVpsFolder;
     

@@ -19,6 +19,7 @@ webserver root folder should be set in these config.php & sql info goes into ste
 Dont forget to fill out config.ini! Found in discord bot folder. 
 
 
+-Add Proxy Option. Doesn't work that well
 
 
 ![Friendlist](https://user-images.githubusercontent.com/44829491/192215488-402ef189-315e-4dc3-9c05-c55ba90c2c1f.PNG)
