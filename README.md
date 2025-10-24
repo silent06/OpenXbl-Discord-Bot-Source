@@ -31,7 +31,7 @@ Update the following files with your settings:
 
 | **File** | **Description** |
 |-----------|----------------|
-| `config.php` | Set your web server root folder |
+| `config.php` | Set your web server root folder(Where all your html files go) |
 | `stealth/sql/Conn.php` | Add your SQL database connection details |
 | `xbox.php` | Insert your [**OpenXbl API**](https://xbl.io/) key |
 | `discord_bot/config.ini` | Complete your bot configuration |
