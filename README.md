@@ -28,6 +28,7 @@ This bot connects to Xbox Live through the [**OpenXbl API**](https://xbl.io/) an
 - Sign up at [**xbl.io**](https://xbl.io/) and generate your **API key**.
 - Setup WebServer on your VPS or PC. A popular one to use is [**XAMPP**](https://www.apachefriends.org/)
 - Follow OpenXbl Instructions to [**install**](https://github.com/OpenXBL/OpenXBL-PHP)(Use their PHPWrapper)
+- Copy the entire XBLIO folder into your html WebServer Root folder(eg. /var/www/html for linux or C:\xampp\htdocs for Windows)
   
 
 ### **2. Configure the Project**
