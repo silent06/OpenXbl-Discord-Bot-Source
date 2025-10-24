@@ -1,26 +1,69 @@
-# OpenXbl-Discord-Bot-Source
-OpenXbl Discord Bot Source
-Discord bot designed to pull Xbox information from xboxLive using OpenXbl Api. See https://xbl.io/ to setup account. 
 
-This was built in VS 2017 with .Net 2.1 https://dotnet.microsoft.com/en-us/download/dotnet/2.1
+<div style="border: 2px solid grey; padding: 10px;">
 
 
+# **OpenXbl Discord Bot**
 
-if you get a composer error could not find package matching minimum php version? 
+A Discord bot that retrieves Xbox Live data using the [**OpenXbl API**](https://xbl.io/).
+
+---
+
+## 🚀 **Overview**
+This bot connects to Xbox Live through the [**OpenXbl API**](https://xbl.io/) and provides Xbox player and game information directly in Discord.
+
+---
+
+## 🧰 **Requirements**
+
+- [**Visual Studio 2017**](https://visualstudio.microsoft.com/vs/older-downloads/)  
+- [**.NET Core 2.1**](https://dotnet.microsoft.com/en-us/download/dotnet/2.1)  
+- [**PHP**](https://www.php.net/downloads) (for the web integration)
+
+---
+
+## ⚙️ **Setup Instructions**
+
+### **1. Create an OpenXbl Account**
+- Sign up at [**xbl.io**](https://xbl.io/) and generate your **API key**.
+
+### **2. Configure the Project**
+Update the following files with your settings:
+
+| **File** | **Description** |
+|-----------|----------------|
+| `config.php` | Set your web server root folder |
+| `stealth/sql/Conn.php` | Add your SQL database connection details |
+| `xbox.php` | Insert your [**OpenXbl API**](https://xbl.io/) key |
+| `discord_bot/config.ini` | Complete your bot configuration |
+
+### **3. Fixing Composer PHP Version Errors**
+If you encounter the error:
+
+Could not find package matching minimum PHP version:
+
+Follow this guide to resolve it:  
+👉 [**Composer: Ignore Platform Requirements**](https://php.watch/articles/composer-ignore-platform-req)
+
+---
+
+## 🧩 **Notes**
+- A **proxy option** is available but currently has limited functionality.  
+- Make sure all configuration files are properly filled before running the bot.
+
+---
+
+## 📜 **License**
+This project is provided as-is for educational and community use.  
+Please review and comply with the [**OpenXbl API Terms of Use**](https://xbl.io/).
+
+---
+
+## 💬 **Support**
+If you run into issues or want to contribute, feel free to open an **issue** or **pull request** on GitHub.
 
 
-This should fix it-
-https://php.watch/articles/composer-ignore-platform-req
 
-
-webserver root folder should be set in these config.php & sql info goes into stealth/sql/Conn.php. OpenXbl Api key goes into xbox.php.
-
-
-Dont forget to fill out config.ini! Found in discord bot folder. 
-
-
--Add Proxy Option. Doesn't work that well
-
+</div>
 
 ![Friendlist](https://user-images.githubusercontent.com/44829491/192215488-402ef189-315e-4dc3-9c05-c55ba90c2c1f.PNG)
 ![ProfileScreenshot](https://user-images.githubusercontent.com/44829491/192215490-2cbb1dee-a050-460c-a82f-edeb27d35102.PNG)
