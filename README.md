@@ -54,6 +54,7 @@ Follow this guide to resolve it:
 ## 🧩 **Notes**
 - A **proxy option** is available but currently has limited functionality.  
 - Make sure all configuration files are properly filled before running the bot.
+- If you don't want to setup a webserver to host the php files you dont need to. You can still use the bot without them but some functions may not work. 
 
 ---
 
