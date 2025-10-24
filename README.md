@@ -18,6 +18,7 @@ This bot connects to Xbox Live through the [**OpenXbl API**](https://xbl.io/) an
 - [**Visual Studio 2017**](https://visualstudio.microsoft.com/vs/older-downloads/)  
 - [**.NET Core 2.1**](https://dotnet.microsoft.com/en-us/download/dotnet/2.1)  
 - [**PHP**](https://www.php.net/downloads) (for the web integration)
+- [**OpenXbl PHPWrapper**](https://github.com/OpenXBL/OpenXBL-PHP) (for the web integration)
 
 ---
 
@@ -25,6 +26,9 @@ This bot connects to Xbox Live through the [**OpenXbl API**](https://xbl.io/) an
 
 ### **1. Create an OpenXbl Account**
 - Sign up at [**xbl.io**](https://xbl.io/) and generate your **API key**.
+- Setup WebServer on your VPS or PC. A popular one to use is [**XAMPP**](https://www.apachefriends.org/)
+- Follow OpenXbl Instructions to [**install**](https://github.com/OpenXBL/OpenXBL-PHP)(Use their PHPWrapper)
+  
 
 ### **2. Configure the Project**
 Update the following files with your settings:
